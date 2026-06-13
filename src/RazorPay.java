@@ -2,8 +2,10 @@ public class RazorPay implements PaymentStrategyInterface{
     int commisionRate = 15;
 
     @Override
-    public void pay(int amount) {
+    public boolean pay(int amount) {
         System.out.println("Payment done via RAZORPAY ---> " + amount);
+        // Do processing
+        return true;
     }
 }
 

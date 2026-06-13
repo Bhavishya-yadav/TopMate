@@ -4,9 +4,9 @@ public class TopMateApplication {
     public static void main(String[] args) throws Exception {
         
         CreatorManager creatorManager = CreatorManager.getInstance();
-        Creator creator1 = new Creator("Amit", 26, "1");
+        Creator creator1 = new Creator("Pintu", 26, "1");
         Creator creator2 = new Creator("Bhavishya", 2, "2");
-        Creator creator3 = new Creator("Pintu", 25, "3");
+        Creator creator3 = new Creator("Amit", 25, "3");
         creatorManager.addCreator(creator1);
         creatorManager.addCreator(creator2);
         creatorManager.addCreator(creator3);
@@ -24,10 +24,11 @@ public class TopMateApplication {
 
         bookingManager.getAllCreators();
         bookingManager.getAllEvents("1");
-
-        String bookingId = bookingManager.bookEvent("1", "1", "123", startTime);
-
-        bookingManager.acceptRequest(bookingId);
+        PaymentStrategyInterface payment = new RazorPay();
+        if (payment.pay(event1.getCostOfEvent())) {
+            String bookingId = bookingManager.bookEvent("1", "1", "123", startTime);
+            bookingManager.acceptRequest(bookingId);
+        }
 
         bookingManager.getAllEeventsByCreatorId("1");
         bookingManager.getAllBookingOfUser("1");
