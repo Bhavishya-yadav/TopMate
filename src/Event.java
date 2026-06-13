@@ -1,30 +1,21 @@
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CreatorEvent {
+
+public class Event {
     private String eventId;
-    private Creator creator;
 
     private List<Slot> slots;
 
     private int costOfEvent;
     private String title;
 
-    public CreatorEvent(String title, Creator creator, Customer customer, int costOfEvent, List<Slot> slots) {
-        this.eventId = UUID.randomUUID().toString();
-        this.creator = creator;
+    public Event(String title, int costOfEvent, String id) {
+        this.eventId = id;
         this.costOfEvent = costOfEvent;
-        this.slots = slots;
+        this.slots = new ArrayList<>();
         this.title = title;
-    }
-
-    public Creator getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Creator creator) {
-        this.creator = creator;
     }
 
     public void addSlot(Slot slot) {
@@ -63,6 +54,12 @@ public class CreatorEvent {
         this.slots = slots;
     }
 
-    
-    
+    public void removeSlot(String slotId) {
+        slots.removeIf(slot -> slot.getSlotId().equals(slotId));
+    }
+
+    public Slot findSlotById(String slotId) {
+        return slots.stream().filter(s -> s.getSlotId().equals(slotId)).findFirst().orElse(null);
+    }
 }
+

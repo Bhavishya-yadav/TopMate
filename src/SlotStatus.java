@@ -1,7 +1,7 @@
 public enum SlotStatus {
-    AVAILABLE,
+    CREATED,
     BOOKED,
-    INPROGRESS,
-    FINISHED,
-    CANCELLED;
+    ACCEPTED,
+    CANCELLED,
+    FINISHED;
 }

@@ -4,12 +4,12 @@ public class Slot {
     private String slotId;
     private LocalDateTime startTime, endTime;
     private SlotStatus slotStatus;
-    private Customer customer;
-    public Slot(LocalDateTime startTime, LocalDateTime endTime) {
+
+    public Slot(LocalDateTime startTime, LocalDateTime endTime, String slotId) {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.slotStatus = SlotStatus.AVAILABLE;
-        this.customer = null;
+        this.slotStatus = SlotStatus.CREATED;
+        this.slotId = slotId;
     }
     public LocalDateTime getStartTime() {
         return startTime;
@@ -29,14 +29,17 @@ public class Slot {
     public void setSlotStatus(SlotStatus slotStatus) {
         this.slotStatus = slotStatus;
     }
-    public Customer getCustomer() {
-        return customer;
-    }
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public String getSlotId() {
+        return slotId;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Slot{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", slotStatus=" + slotStatus +
+                '}';
+    }
     
 }
